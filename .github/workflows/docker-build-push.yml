@@ -53,7 +53,7 @@ jobs:
       - name: Build and push Backend Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./clap-backend
+          context: .
           file: ./Dockerfile.backend
           push: true
           tags: ${{ steps.meta-backend.outputs.tags }}
@@ -62,7 +62,7 @@ jobs:
       - name: Build and push Frontend Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./clap-frontend
+          context: .
           file: ./Dockerfile.frontend
           push: true
           tags: ${{ steps.meta-frontend.outputs.tags }}
