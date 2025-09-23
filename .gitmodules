@@ -1,9 +1,0 @@
-[submodule "clap-backend"]
-	path = clap-backend
-	url = https://github.com/KruemmelS/clap-backend.git
-[submodule "clap-frontend"]
-	path = clap-frontend
-	url = https://github.com/KruemmelS/clap-frontend.git
-[submodule "clap-mobile"]
-	path = clap-mobile
-	url = https://github.com/KruemmelS/clap-mobile.git
