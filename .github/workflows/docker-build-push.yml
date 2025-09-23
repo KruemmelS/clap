@@ -9,8 +9,8 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME_BACKEND: ${{ github.repository }}/clap-backend
-  IMAGE_NAME_FRONTEND: ${{ github.repository }}/clap-frontend
+  IMAGE_NAME_BACKEND: kruemmels/clap-backend
+  IMAGE_NAME_FRONTEND: kruemmels/clap-frontend
 
 jobs:
   build-and-push:

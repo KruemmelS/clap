@@ -45,7 +45,7 @@ services:
 
   # Spring Boot Backend - pulls from GitHub Container Registry
   clap-backend:
-    image: ghcr.io/${GITHUB_REPOSITORY:-yourusername/clap}/clap-backend:latest
+    image: ghcr.io/kruemmels/clap-backend:latest
     container_name: clap-backend
     restart: unless-stopped
     depends_on:
@@ -115,7 +115,7 @@ services:
 
   # React Frontend - pulls from GitHub Container Registry
   clap-frontend:
-    image: ghcr.io/${GITHUB_REPOSITORY:-yourusername/clap}/clap-frontend:latest
+    image: ghcr.io/kruemmels/clap-frontend:latest
     container_name: clap-frontend
     restart: unless-stopped
     depends_on:

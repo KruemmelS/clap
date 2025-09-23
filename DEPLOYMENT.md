@@ -98,6 +98,55 @@ docker-compose -f docker-compose.prod.yml up -d
 - Lokale Entwicklung: `.env` in `clap-backend/` und `clap-frontend/`
 - Production: `.env` in `/opt/clap/` (für docker-compose)
 
+### 5. Automatisches Deployment (Optional)
+
+Du hast **zwei Optionen** für automatisches Deployment:
+
+#### Option A: Webhook (Empfohlen - sofortiges Update)
+
+GitHub triggert automatisch ein Update nach jedem Push:
+
+1. Auf dem Production Server:
+```bash
+cd /opt/clap
+chmod +x setup-webhook-server.sh
+./setup-webhook-server.sh
+```
+
+2. Webhook Secret setzen:
+```bash
+# Generiere ein sicheres Secret
+WEBHOOK_SECRET=$(openssl rand -hex 32)
+echo $WEBHOOK_SECRET
+
+# Trage es in /etc/webhook/hooks.json ein
+nano /etc/webhook/hooks.json  # Replace WEBHOOK_SECRET_HERE
+systemctl restart clap-webhook
+```
+
+3. GitHub Webhook einrichten:
+   - Gehe zu: https://github.com/KruemmelS/clap/settings/hooks
+   - "Add webhook"
+   - Payload URL: `http://192.168.50.224:9000/hooks/clap-deploy`
+   - Content type: `application/json`
+   - Secret: (dein generiertes Secret)
+   - Events: "Just the push event"
+
+#### Option B: Cron Job (Einfacher - alle 5 Minuten)
+
+Automatische Prüfung auf Updates alle 5 Minuten:
+
+```bash
+cd /opt/clap
+chmod +x setup-cron-update.sh
+./setup-cron-update.sh
+```
+
+Logs ansehen:
+```bash
+tail -f /var/log/clap-auto-update.log
+```
+
 ### Troubleshooting
 
 **Image Pull Fehler:**
